@@ -1,0 +1,7 @@
+﻿  App.cpp
+c:\users\ryanb\source\repos\stackscript\stackscript\app.cpp(52): warning C4018: '<': signed/unsigned mismatch
+c:\users\ryanb\source\repos\stackscript\stackscript\app.cpp(162): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+c:\users\ryanb\source\repos\stackscript\stackscript\app.cpp(168): warning C4018: '<': signed/unsigned mismatch
+c:\users\ryanb\source\repos\stackscript\stackscript\app.cpp(176): warning C4018: '<': signed/unsigned mismatch
+c:\users\ryanb\source\repos\stackscript\stackscript\app.cpp(173): warning C4715: 'SearchForValue': not all control paths return a value
+  StackScript.vcxproj -> C:\Users\ryanb\source\repos\StackScript\Debug\StackScript.exe

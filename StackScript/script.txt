@@ -1,0 +1,16 @@
+dog 5
+cat 3
+bird 11
+program
+push bird
+push cat
+push dog
+display
+sub
+add
+display
+pop bird
+display
+push bird
+display
+end
