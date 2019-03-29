@@ -26,6 +26,7 @@ void Div();
 void Display();
 int SearchForValue(vector<string> variables, string value);
 bool isNumber(string s);
+bool compareStrings(string str1, string str2);
 
 int main() {
 	vector<string> items;
@@ -70,7 +71,7 @@ void Interpret(vector<string> items) {
 			// if the item isn't an integer
 			else if (!isNum) {
 				// if the item is NOT the program statement in the script
-				if ((items.at(i) != "program") && (items.at(i) != "PROGRAM")) {
+				if (!(compareStrings(items.at(i), "program"))) {
 					variableNames.push_back(items.at(i));
 				}
 				else {
@@ -80,38 +81,40 @@ void Interpret(vector<string> items) {
 		}
 		// if the program statement has been called in the script
 		else if (programHasBeenCalled) {
-			if ((items.at(i) == "push") || (items.at(i) == "PUSH")) {
+			if (compareStrings(items.at(i), "push")) {
 				string item = items.at(i + 1);
 				int key = SearchForValue(variableNames, item);
 				int valueToPush = values.at(key);
 				Push(valueToPush);
 			}
-			else if ((items.at(i) == "display") || (items.at(i) == "DISPLAY")) {
+			else if (compareStrings(items.at(i), "display")) {
 				Display();
 			}
-			else if ((items.at(i) == "sub") || (items.at(i) == "SUB")) {
+			else if (compareStrings(items.at(i), "sub")) {
 				Sub();
 			}
-			else if ((items.at(i) == "add") || (items.at(i) == "ADD")) {
+			else if (compareStrings(items.at(i), "add")) {
 				Add();
 			}
-			else if ((items.at(i) == "mult") || (items.at(i) == "MULT")) {
+			else if (compareStrings(items.at(i), "mult")) {
 				Mult();
 			}
-			else if ((items.at(i) == "div") || (items.at(i) == "DIV")) {
+			else if (compareStrings(items.at(i), "div")) {
 				Div();
 			}
-			else if ((items.at(i) == "pop") || (items.at(i) == "POP")) {
+			else if (compareStrings(items.at(i), "pop")) {
 				string item = items.at(i + 1);
 				int key = SearchForValue(variableNames, item);
 				Pop(key, values);
+			}
+			else if (compareStrings(items.at(i), "end")) {
+				return;
 			}
 		}
 	}
 }
 void Push(int val) {
 	iStack.push(val);
-	//cout << "\nvalue pushed to the stack\n";
 }
 void Pop(int key, vector<int> &values) {
 	values.at(key) = iStack.top();
@@ -126,9 +129,6 @@ void Add() {
 	int subResult;
 	subResult = val1 + val2;
 	iStack.push(subResult);
-	//cout << "\nvalue 1: " << val1 << " " << "value2: " << val2;
-	//cout << "\nAddition result is: " << subResult;
-
 }
 void Sub() {
 	int val1;
@@ -140,9 +140,6 @@ void Sub() {
 	subResult = val2 - val1;
 	iStack.pop();
 	iStack.push(subResult);
-
-	//cout << "\nvalue 1: " << val1 << " " << "value2: " << val2;
-	//cout << "\nSubtraction result is: " << subResult;
 }
 void Mult() {
 	int val1;
@@ -183,4 +180,32 @@ bool isNumber(string s)
 			return false;
 
 	return true;
+}
+bool compareStrings(string str1, string str2) {
+	// length of our first string (user input)
+	int length1 = str1.length();
+	// length of our second string (command name)
+	int length2 = str2.length();
+
+	// if the lengths are equal
+	if (length1 == length2) {
+		// loops through strings
+		for (int i = 0; i < length1; i++) {
+			// changes each character to capital letter
+			str1[i] = toupper(str1[i]);
+			str2[i] = toupper(str2[i]);
+		}
+		// if they're equal after changing characters to uppercase
+		if (str1 == str2) {
+			return true;
+		}
+		// if they're NOT equal after changing characters to uppercase
+		else {
+			return false;
+		}
+	}
+	// if they are not, they're obviously not the same word
+	else {
+		return false;
+	}
 }
