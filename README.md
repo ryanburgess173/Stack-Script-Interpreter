@@ -20,19 +20,18 @@ Your program is to execute a program written in this stack script language.  The
 
  
 Example input from script.txt
-Markup : 
-*dog 5
-*cat 3
-*bird 11
-*program
-*push bird
-*push cat
-*push dog
-*display
-*sub
-*add
-*display
-*end
+Markup : * dog 5
+* cat 3
+* bird 11
+* program
+* push bird
+* push cat
+* push dog
+* display
+* sub
+* add
+* display
+* end
 
 Example output
 
