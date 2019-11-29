@@ -20,9 +20,9 @@ Your program is to execute a program written in this stack script language.  The
 
  
 Example input from script.txt
-Markup : ```
+Markup : ```javascript
 dog 5
-\ncat 3
+cat 3
 bird 11
 program
 push bird
